@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD EATS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-dark: #120d0b;
+            --bg-panel: rgba(255,255,255,0.06);
+            --orange: #ff8a1e;
+            --orange-soft: #ffb066;
+            --cream: #fff7f0;
+            --shadow: rgba(0,0,0,0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(255,138,30,0.35), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(255,176,102,0.25), transparent 30%),
+                linear-gradient(135deg, #120d0b 0%, #1c110d 30%, #2a1711 100%);
+            color: var(--cream);
+            overflow: hidden;
+        }
+
+        .hero {
+            position: relative;
+            width: min(1100px, 88vw);
+            padding: 52px 42px 42px;
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 32px;
+            background: rgba(12, 9, 8, 0.52);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+            backdrop-filter: blur(8px);
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(8px);
+        }
+
+        .hero::before {
+            width: 260px;
+            height: 260px;
+            right: -50px;
+            top: -50px;
+            background: rgba(255, 138, 30, 0.18);
+        }
+
+        .hero::after {
+            width: 300px;
+            height: 300px;
+            left: -80px;
+            bottom: -90px;
+            background: rgba(255, 176, 102, 0.12);
+        }
+
+        .badge {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            font-size: 12px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--orange-soft);
+            margin-bottom: 18px;
+            z-index: 1;
+        }
+
+        .badge .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange-soft), var(--orange));
+            box-shadow: 0 0 18px rgba(255,138,30,0.9);
+        }
+
+        .title-wrap {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .title {
+            position: relative;
+            margin: 0;
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(4.5rem, 13vw, 13rem);
+            line-height: 0.8;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: transparent;
+            background: linear-gradient(180deg, #fff3e8 0%, #ffd0a0 18%, #ff9b3d 44%, #f86b1a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 12px 30px rgba(255,139,43,0.3);
+            transform: skewY(-3deg);
+            filter: drop-shadow(0 18px 30px rgba(0,0,0,0.26));
+        }
+
+        .title::before {
+            content: "JD EATS";
+            position: absolute;
+            inset: 0;
+            color: rgba(255,255,255,0.08);
+            transform: translate(8px, 10px);
+            z-index: -1;
+        }
+
+        .subtitle {
+            position: relative;
+            z-index: 1;
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.72rem;
+        }
+
+        .subtitle::before,
+        .subtitle::after {
+            content: "";
+            display: block;
+            width: 54px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+        }
+
+        .cta-row {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .button,
+        .mini-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+        }
+
+        .button {
+            padding: 16px 28px;
+            background: linear-gradient(135deg, var(--orange-soft), var(--orange));
+            color: #1d120d;
+            box-shadow: 0 14px 28px rgba(255,138,30,0.35);
+        }
+
+        .mini-tag {
+            padding: 12px 18px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.03);
+            color: rgba(255,255,255,0.85);
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 680px) {
+            .hero {
+                padding: 32px 22px 28px;
+                border-radius: 24px;
+            }
+
+            .badge {
+                letter-spacing: 0.18em;
+                font-size: 10px;
+            }
+
+            .subtitle {
+                letter-spacing: 0.14em;
+            }
+
+            .cta-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero" aria-label="JD EATS hero section">
+        <div class="badge"><span class="dot"></span> Fresh flavor energy</div>
+
+        <div class="title-wrap">
+            <h1 class="title">JD EATS</h1>
+            <div class="subtitle">Bold bites • creative cravings</div>
+        </div>
+
+        <div class="cta-row">
+            <div class="button">Order now</div>
+            <div class="mini-tag">Chef-crafted</div>
+        </div>
+    </section>
+</body>
+</html>
